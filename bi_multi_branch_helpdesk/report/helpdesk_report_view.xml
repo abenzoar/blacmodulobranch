@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sale report Inherit search View to Modify it -->
+    <record id="view_helpdesk_ticket_report_filter_branch" model="ir.ui.view">
+        <field name="name">view.helpdesk.ticket.report.filter.branch</field>
+        <field name="model">helpdesk.ticket.report.analysis</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_report_analysis_view_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <filter string="Branch" name="branch" domain="[]" context="{'group_by':'branch_id'}" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_subscription_order_view_form" model="ir.ui.view">
+            <field name="name">sale.subscription.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_subscription.sale_subscription_order_view_form" />
+            <field name="arch" type="xml">
+                <field name="sale_order_template_id" position="after">
+                    <field name="branch_id" />
+                </field>
+            </field>
+        </record>
+
+        <record id="sale_subscription_view_tree" model="ir.ui.view">
+            <field name="name">sale.subscription.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_subscription.sale_subscription_view_tree" />
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="branch_id" optional="show"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

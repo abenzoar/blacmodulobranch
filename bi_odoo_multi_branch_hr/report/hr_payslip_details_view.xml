@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<odoo>
+<data>
+
+<template id="inherit_hr_payslip_details" inherit_id="hr_payroll.report_payslip">
+	<xpath expr="//table[@class='table table-sm table-bordered']" position="before">
+	    <h2>Branch: <span t-esc="o.branch_id.name"/></h2>
+	</xpath>
+</template>
+
+</data>
+</odoo>

@@ -1,0 +1,2 @@
+version :- 15.0.0.1 dt 18-1-2022
+    - removed unwanted view 'view_move_line_form_inherit_bi_branch_scrap_order'.

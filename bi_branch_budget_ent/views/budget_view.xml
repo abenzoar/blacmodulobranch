@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+	
+        <!-- Crossovered Budget Views -->
+	       
+		<record id="account_budget_inherit_bi_branch_budget_ent" model="ir.ui.view">
+			<field name="name">account.budget.inherit.bi.branch.budget.ent</field>
+			<field name="model">crossovered.budget</field>
+			<field name="inherit_id" ref="account_budget.crossovered_budget_view_form" />
+			<field name="arch" type="xml">
+				<field name="user_id" position="after">
+					<field name="branch_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+				</field>
+                
+                <xpath expr="//page[@name='budget_lines']/field[@name='crossovered_budget_line']/tree/field[@name='analytic_account_id']" position="replace">
+                </xpath>
+                
+                <xpath expr="//page[@name='budget_lines']/field[@name='crossovered_budget_line']/tree/field[@name='general_budget_id']" position="after">
+                    <field name="branch_id"/>
+                    <field name="analytic_account_id" domain="[ ('branch_id', '=', parent.branch_id),   '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]" groups="analytic.group_analytic_accounting"/>
+                </xpath>
+                
+                
+                <xpath expr="//field[@name='general_budget_id']" position="attributes">
+                      <attribute name="domain">[('branch_id', '=', branch_id)]</attribute>
+                </xpath>
+                
+                
+			</field>
+		</record>
+		
+		
+		
+		<!-- Crossovered Budget List Views -->
+		
+		<record id="crossovered_budget_view_tree_inherit_bi_branch_budget_ent" model="ir.ui.view">
+            <field name="name">crossovered.budget.view.tree.inherit.bi.branch.budget.ent</field>
+            <field name="model">crossovered.budget</field>
+            <field name="inherit_id" ref="account_budget.crossovered_budget_view_tree" />
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="branch_id"/>
+                </field>
+		    </field>
+		 </record>
+	</data>
+</odoo>

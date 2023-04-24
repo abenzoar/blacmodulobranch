@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		
+		<record id="helpdesk_ticket_branch_manager_rule" model="ir.rule">
+		    <field name="name">Helpdesk Branch Manager</field>
+		    <field name="model_id" ref="helpdesk.model_helpdesk_ticket"/>
+		    <field name="global" eval="True"/>
+		    <field name="domain_force">['|',('branch_id','=',False),('branch_id','in',[branch.id for branch in user.branch_ids])]</field>
+		    <field name="groups" eval="[(4, ref('branch.group_branch_user_manager'))]"/>
+		</record>
+
+
+        <record id="helpdesk.helpdesk_ticket_user_rule" model="ir.rule">
+            <field name="name">Helpdesk Ticket User</field>
+            <field name="model_id" ref="helpdesk.model_helpdesk_ticket"/>
+			<field name="domain_force">['|', '|',
+					('team_id.privacy_visibility', '!=', 'invited_internal'),
+					('team_id.message_partner_ids', 'in', [user.partner_id.id]),
+					('message_partner_ids', 'in', [user.partner_id.id]),
+					'|', ('branch_id','=',user.branch_id.id) , ('branch_id','=',False)
+				]</field>
+            <field name="groups" eval="[(4, ref('helpdesk.group_helpdesk_user'))]"/>
+        </record>
+	</data>
+</odoo>
