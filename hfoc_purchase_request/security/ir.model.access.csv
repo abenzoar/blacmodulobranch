@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_purchase_requester,purchase.requester,model_purchase_requester,group_purchase_request_documents,1,1,1,1
-access_purchase_requester_line,purchase_requester_line,model_purchase_requester_line,group_purchase_request_documents,1,1,1,1
-access_po_request_documents,po_request_documents,purchase.model_purchase_order,group_purchase_request_documents,1,1,1,1
-access_pol_request_documents,pol_request_documents,purchase.model_purchase_order_line,group_purchase_request_documents,1,1,1,1
