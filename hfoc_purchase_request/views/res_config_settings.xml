@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">Request Order custom</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="15"/>
+        <field name="inherit_id" ref="purchase.res_config_settings_view_form_purchase"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[@id='stock_packaging_purchase']" position="after">
+                
+                <div class="col-12 col-lg-6 o_setting_box" id="hfoc_supplier_bool">
+                    <div class="o_setting_left_pane">
+                        <field name="hfoc_supplier_bool"/>
+                    </div>                    
+                    <div class="o_setting_right_pane">
+                        <label for="hfoc_supplier_bool" string=" Proveedor por default para solicitudes de compra"/>
+                        <div class="text-muted">
+                            Selecciona un proveedor para generar solicitudes de compra de SERVICIO en los productos que no contengan un proveedor registrado.
+                        </div>
+                        <div class="mt8" attrs="{'invisible': [('hfoc_supplier_bool', '=', False)]}">
+                             <field name="hfoc_supplier_id" attrs="{'required': [('hfoc_supplier_bool', '!=', False)]}" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 
+                <div class="col-12 col-lg-6 o_setting_box" id="hfoc_request_block" >
+                    <div class="o_setting_left_pane">
+                        <field name="hfoc_request_block"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="hfoc_request_block"/>
+                        <div class="text-muted">
+                            No podras enviar solicitudes de compra si alguno de los productos no cuenta con un proveedor configurado.
+                        </div>
+                    </div>
+                </div>
+                -->
+
+            </xpath>
+
+
+
+
+        </field>
+    </record>
+
+</odoo>

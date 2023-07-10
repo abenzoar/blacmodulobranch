@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="inherit_purchase_request" model="ir.ui.view">
+        <field name="name">purchase.request.form.view</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="priority" eval="50" />  
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='purchase_delivery_invoice']" position="after">
+                <page string="Solicitud de compra"  attrs="{'invisible':[('purchase_requester_id','=', False )]}" >
+                    <group>
+                        <field name="requested_by" options="{'no_create_edit': True}" readonly="1"  />
+                        <field name="purchase_requester_id" options="{'no_create_edit': True}" readonly="1"  />
+                    </group>
+                    <group>
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//page[@name='products']/field/tree/field[@name='price_tax']" position="after">
+                <button name="apply_state_rejected" icon="fa-times"  type="object" attrs="{'invisible':[('state_pr','in', ('approve','rejected') )],'column_invisible':['|',('parent.purchase_requester_id','=',False),('state_pr','in', ('approve','rejected') )]}"  class="btn btn-danger"  /> 
+                <button name="apply_state_to_rectify" icon="fa-undo"  type="object" attrs="{'invisible':[('state_pr','in', ('to_rectify','approve','rejected') )],'column_invisible':['|',('parent.purchase_requester_id','=',False),('state_pr','in', ('to_rectify','approve','rejected') )]}"  class="btn btn-warning"  /> 
+                <button name="apply_state_to_process" icon="fa-arrow-right"  type="object" attrs="{'invisible':[('state_pr','in', ('to_process','approve','rejected')  )],'column_invisible':['|',('parent.purchase_requester_id','=',False),('state_pr','in', ('to_process','approve','rejected') )]}"  class="btn btn-info"  />                 
+                <button name="apply_state_approve" icon="fa-check"  type="object" attrs="{'invisible':[('state_pr','in', ('approve','rejected' ) )],'column_invisible':['|',('parent.purchase_requester_id','=',False),('state_pr','in', ('approve','rejected' ))]}"  class="btn btn-success"  /> 
+               
+                <field name="purchase_requester_line_id" readonly="1"  invisible="1" />
+                
+                <field name="payment_state"  attrs="{'column_invisible':[('parent.purchase_requester_id','=',False)]}"   />
+                
+                <field name="state_pr" readonly="1" attrs="{'column_invisible':[('parent.purchase_requester_id','=',False)]}"  decoration-success="state_pr == 'approve'" decoration-info="state_pr == 'to_process'" decoration-warning="state_pr == 'to_rectify'"  decoration-danger="state_pr == 'rejected'"  widget="badge"  /> 
+                        
+            </xpath>
+
+
+            <xpath expr="//field[@name='notes']" position="before">               
+                        <field name="pr_note" attrs="{'invisible':[('purchase_requester_id','=', False )]}" />
+            </xpath>
+
+
+        </field>
+    </record>
+
+</odoo>

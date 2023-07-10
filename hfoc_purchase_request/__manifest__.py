@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+{
+    'name': 'HFoc - Purchase Request',
+    'version': '16.0',
+    'category': 'Purchases',
+    'summary': 'Purchase Request is an alternative and simple module to Approvals',
+    'description': "",
+    'author': "HFoc",
+    'website': 'https://olitech.dev',
+    'depends': ['account','purchase','stock','base','sale'],
+    "license": "AGPL-3",
+    'data': [        
+        'security/ir.model.access.csv',
+        'security/res_groups.xml',
+        'views/res_users.xml',    
+        'views/requester.xml',
+        'views/res_config_settings.xml',        
+        'views/product_template.xml',
+        'views/purchase_order.xml',        
+    ],
+    "images": ['static/description/banner.png'],
+    'demo': [],
+    'installable': True,
+    'auto_install': False,
+    'application': True,
+}
